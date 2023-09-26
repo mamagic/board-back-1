@@ -1,5 +1,6 @@
 package com.api.board.service;
 
+import com.api.board.dto.MemberDTO;
 import com.api.board.entity.Member;
 import com.api.board.repository.MemberRepository;
 import jakarta.transaction.Transactional;
@@ -14,9 +15,9 @@ public class MemberService {
     MemberRepository memberRepository;
 
     @Transactional
-    public boolean isUserAuthorized(final Member client){
-        Member member = memberRepository.findByEmail(client.getEmail());
-        return client.getPassword().equals(member.getPassword());
+    public boolean isUserAuthorized(final MemberDTO memberDTO){
+        Member member = memberRepository.findByEmail(memberDTO.getEmail());
+        return memberDTO.getPassword().equals(member.getPassword());
     }
 
     @Transactional
